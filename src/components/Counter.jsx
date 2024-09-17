@@ -1,16 +1,28 @@
+import { useDispatch, useSelector } from "react-redux";
+import { decrementCounter, incrementCounter, resetCounter } from "../services/Actions/counterAction";
 
 const Counter = () => {
     
+    const count = useSelector(state => state.count);
+    const dispatch = useDispatch();
 
     const handleIncrement =()=>{
-        
+        dispatch(incrementCounter())
+    }
+    const handleDecrement =()=>{
+        dispatch(decrementCounter())
+    }
+    const handleReset =()=>{
+        dispatch(resetCounter())
     }
     return (
         <div>
             <h1>Counter app</h1>
 
-            <h3>Count: 0</h3>
+            <h3>Count: {count}</h3>
             <button className="btn btn-primary" onClick={handleIncrement}>Increment</button>
+            <button className="btn btn-primary" onClick={handleDecrement}>Decrement</button>
+            <button className="btn btn-primary" onClick={handleReset}>Reset</button>
         </div>
     );
 };
